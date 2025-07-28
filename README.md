@@ -247,42 +247,6 @@ Enable debug logging by setting:
 export LOG_LEVEL=DEBUG
 ```
 
-## 🛠️ Development
-
-### Project Structure
-
-```
-ivyhack/
-├── main.py              # FastAPI backend with PydanticAI
-├── app.py               # Streamlit frontend
-├── setup_database.py    # Database setup script
-├── requirements.txt     # Python dependencies
-├── README.md           # This file
-├── *.csv               # Transaction data files
-└── .env                # Environment variables (create this)
-```
-
-### Adding New Features
-
-1. **New Query Types**: Modify the SQL generation agent's system prompt
-2. **Additional Analysis**: Extend the data summary agent
-3. **UI Enhancements**: Update the Streamlit interface
-4. **Database Schema**: Modify setup_database.py for schema changes
-
-## 📈 Performance Optimization
-
-- Database indexes are automatically created for common queries
-- Query results are limited to prevent memory issues
-- Large datasets are processed in chunks
-- Connection pooling for database efficiency
-
-## 🔐 Security Considerations
-
-- Environment variables for sensitive data
-- SQL injection prevention through parameterized queries
-- Database connection encryption
-- API key protection
-
 ## 🤝 Contributing
 
 1. Fork the repository
