@@ -33,6 +33,7 @@ The system follows a multi-step AI workflow:
 ### Installation
 
 1. **Clone and setup**:
+
 ```bash
 git clone <your-repo>
 cd ivyhack
@@ -40,6 +41,7 @@ pip install -r requirements.txt
 ```
 
 2. **Set up environment variables**:
+
 ```bash
 # Create .env file
 export OPENAI_API_KEY="your_openai_api_key_here"
@@ -47,21 +49,26 @@ export DATABASE_URL="postgresql://username:password@localhost:5432/database_name
 ```
 
 3. **Set up PostgreSQL database**:
+
 ```bash
 # Make sure PostgreSQL is running, then:
 python setup_database.py
 ```
 
 4. **Start the FastAPI backend**:
+
 ```bash
 python run_api.py
 ```
+
 Or alternatively:
+
 ```bash
 uvicorn api.main:app --reload --port 8001
 ```
 
 5. **Launch the Streamlit frontend** (in a new terminal):
+
 ```bash
 streamlit run app.py
 ```
@@ -70,42 +77,18 @@ streamlit run app.py
 
 ## 🗄️ Database Setup
 
-The system includes an automated database setup script that:
-
-- Creates the `transactions` table with proper schema
-- Imports data from CSV files
-- Creates indexes for optimal performance
-- Handles data type conversions and cleaning
-
-### Manual Database Setup
-
-If you prefer manual setup:
-
-```sql
-CREATE DATABASE payment_ops;
--- Then run setup_database.py to create tables and import data
-```
-
-### Database Schema
-
-The transactions table includes 70+ columns covering:
-
-- **Financial Data**: amounts, currencies, exchange rates, fees
-- **Transaction Details**: IDs, status, hashes, confirmations
-- **User Information**: KYC status, verification levels, user tiers
-- **Blockchain Data**: addresses, networks, gas costs, block info
-- **Risk & Compliance**: AML scores, sanctions checks, PEP status
-- **Operational Data**: error codes, retry counts, timestamps
-
-## 🔧 API Endpoints
+The system currently uses a blockchain transaction database, with a schema designed for detailed financial, user, and compliance data. Support for additional data types and broader datasets is planned for future releases, enabling flexible integration beyond blockchain transactions.
 
 ### Main Query Endpoint
+
 ```
 POST /api/query
 ```
+
 Processes natural language queries through the complete AI workflow.
 
 **Request**:
+
 ```json
 {
   "query": "What is the status of transaction abc-123?"
@@ -113,6 +96,7 @@ Processes natural language queries through the complete AI workflow.
 ```
 
 **Response**:
+
 ```json
 {
   "explanation": "Generated SQL query explanation",
@@ -124,6 +108,7 @@ Processes natural language queries through the complete AI workflow.
 ```
 
 ### Additional Endpoints
+
 - `GET /api/health` - Health check
 - `GET /api/schema` - Get database schema
 - `POST /api/sql-only` - Generate SQL without execution
@@ -146,12 +131,14 @@ Try these natural language queries:
 The system uses two specialized PydanticAI agents:
 
 ### SQL Generation Agent
+
 - Analyzes natural language queries
 - Has full knowledge of database schema
 - Generates optimized PostgreSQL queries
 - Provides explanations and reasoning
 
 ### Data Summary Agent
+
 - Analyzes retrieved transaction data
 - Identifies patterns and anomalies
 - Provides actionable insights
@@ -198,7 +185,7 @@ DATABASE_URL=postgresql://username:password@your-db-host:5432/database_name
 Create a `docker-compose.yml` for easy deployment:
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   postgres:
     image: postgres:15
@@ -230,16 +217,19 @@ volumes:
 ### Common Issues
 
 1. **Database Connection Failed**
+
    - Verify PostgreSQL is running
    - Check DATABASE_URL format
    - Ensure database exists
 
 2. **OpenAI API Errors**
+
    - Verify OPENAI_API_KEY is set
    - Check API key permissions
    - Monitor rate limits
 
 3. **CSV Import Issues**
+
    - Ensure CSV files are in the project directory
    - Check file permissions
    - Verify data format matches schema
@@ -252,6 +242,7 @@ volumes:
 ### Debug Mode
 
 Enable debug logging by setting:
+
 ```bash
 export LOG_LEVEL=DEBUG
 ```
@@ -310,4 +301,4 @@ This project is licensed under the MIT License.
 - Powered by [PydanticAI](https://ai.pydantic.dev/)
 - UI with [Streamlit](https://streamlit.io/)
 - Database with [PostgreSQL](https://postgresql.org/)
-- AI by [OpenAI](https://openai.com/) 
+- AI by [OpenAI](https://openai.com/)
