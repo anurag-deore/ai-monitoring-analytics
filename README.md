@@ -2,6 +2,9 @@
 
 An AI-powered FastAPI application with PydanticAI that enables natural language querying of transaction data stored in PostgreSQL. The system augments user queries with dataset information, generates SQL queries, retrieves data, and provides AI-powered summaries and insights.
 
+
+[![Watch the video](https://www.loom.com/share/42db4846da3b453190bb37304c944f20?sid=77e85dbb-0ef1-4c6d-9739-e5021d62bb5b)]
+
 ## 🌟 Features
 
 - **Natural Language Queries**: Ask questions in plain English about your transaction data
